@@ -1,15 +1,17 @@
 <template>
-    <div>
-        <h1>Blog</h1>
-        <p>Welcome to my blog! Here you will find articles on various topics.</p>
-        <ul>
-            <li><a href="/blog/post1">Post 1</a></li>
-            <li><a href="/blog/post2">Post 2</a></li>
-            <li><a href="/blog/post3">Post 3</a></li>
-        </ul>
-    </div>
+  <MdPreview :id="id" :modelValue="myMarkdown" />
+  <!-- <MdCatalog :editorId="id" :scrollElement="scrollElement" /> -->
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue';
+import { MdPreview, MdCatalog } from 'md-editor-v3';
+import myMarkdown from '@/assets/TypeScript.md?raw';
 
-<style scoped></style>
+// preview.css相比style.css少了编辑器那部分样式
+import 'md-editor-v3/lib/preview.css';
+
+const id = 'preview-only';
+const text = ref('# Hello Editor');
+const scrollElement = document.documentElement;
+</script>
