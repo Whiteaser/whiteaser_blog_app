@@ -14,7 +14,12 @@
         "noEmit": true,
         "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
         "module": "ESNext",
-        "moduleResolution": "Bundler",
-        "types": ["node"]
+        "types": ["node"],
+        // "target": "ESNext", // 适应现代 Node.js
+        "strict": true, // 开启严格模式
+        "noImplicitAny": true, // 不允许隐式 any 类型
+        "moduleResolution": "bundler",
+        // "esModuleInterop": true, // 处理 CommonJS 模块
+        "skipLibCheck": true // 跳过库文件的类型检查，提升性能
     }
 }
