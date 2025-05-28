@@ -1,71 +1,73 @@
 <template>
-    <div @mousemove="handleMouseMove">
-        <header :class="{ visible: showNav }">
-            <nav>
-                <ul class="nav_bar">
-                    <li @click="toPage('/home')">Home</li>
-                    <li @click="toPage('/blog')">Blog</li>
-                    <li @click="toPage('/tools')">Tools</li>
-                    <li @click="toPage('/me')">Me</li>
-                </ul>
-            </nav>
-        </header>
-        <RouterView />
-        <footer></footer>
+    <noscript>
+        <div
+            style="
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                background: red;
+                color: white;
+                text-align: center;
+                padding: 10px;
+                font-size: 16px;
+                z-index: 9999999999;
+            "
+        >
+            ⚠️ 您的浏览器已禁用 JavaScript！请启用 JavaScript
+            以获得完整功能支持。
+        </div>
+    </noscript>
+    <!-- 布局 -->
+    <div class="layout">
+        <!-- 遮罩 -->
+        <div class="cover is-homepage"></div>
+        <!-- 背景 -->
+        <video
+            class="cover-bg active"
+            src="@/assets/BGV2.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+        ></video>
+        <NavBar />
+        <router-view />
+        <FootBar />
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
-const toPage = (path: string): void => {
-    router.push(path)
-}
-
-const showNav = ref(false)
-
-const handleMouseMove = (e: MouseEvent) => {
-    showNav.value = e.clientY <= 80
-}
+import NavBar from '@/components/NavBar.vue'
+import FootBar from '@/components/FootBar.vue'
 </script>
 
 <style scoped>
-header {
+.cover {
+    z-index: 0;
     position: fixed;
-    top: 0;
-    width: 100%;
-    transition: opacity 0.3s ease-in-out;
-    opacity: 0;
     pointer-events: none;
-    z-index: 1000;
+    /* left: 0;
+    top: 0; */
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.5) 100%),
+        radial-gradient(rgba(0, 0, 0, 0) 33%, rgba(0, 0, 0, 0.3) 166%);
 }
-
-header.visible {
-    opacity: 1;
-    pointer-events: auto;
+.cover-bg {
+    z-index: -1;
+    /* opacity: 1; */
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    /* animation: main 1s ease forwards; */
 }
-
-.nav_bar {
+.layout {
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 10px 0;
-    margin: 0;
-}
-
-.nav_bar li {
-    list-style: none;
-    margin: 0 20px;
-    cursor: pointer;
-    font-size: 20px;
-    color: white;
-    transition: all 0.4s ease-in-out;
-}
-
-.nav_bar li:hover {
-    font-size: 24px;
-    color: red;
+    flex-direction: column;
 }
 </style>
