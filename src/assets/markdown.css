@@ -1,0 +1,24 @@
+/* MD Editor 样式覆盖 */
+.md-editor-preview-wrapper,
+.md-editor-preview,
+.md-editor-preview[class*='default'],
+.default.md-editor-preview,
+[class*='md-editor-preview'],
+div[class*='md-editor-preview'] {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* 主题覆盖 */
+html[class*='default'] .md-editor-preview-wrapper,
+html[class*='default'] .md-editor-preview {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* 内容区域 */
+.md-editor-preview .default,
+.md-editor-preview-wrapper .default {
+  background-color: transparent !important;
+  background: transparent !important;
+}

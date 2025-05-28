@@ -20,9 +20,14 @@ const router = createRouter({
                     component: () => import('@/views/layout/HomePage.vue'),
                 },
                 {
-                    // 博客
+                    // 博客列表
                     path: '/blog',
                     component: () => import('@/views/layout/BlogPage.vue'),
+                },
+                {
+                    // 博客详情页
+                    path: 'blog/:slug',
+                    component: () => import('@/components/BlogCard.vue'),
                 },
                 {
                     // 工具

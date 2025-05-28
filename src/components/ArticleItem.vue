@@ -5,7 +5,8 @@
         itemscope
         :itemtype="url"
         :style="{ backgroundImage: `url(${article.coverImage})` }"
-    >
+        @click="toPage(`/blog/${article.id}`)"
+        >
         <header class="entry-header">
             <h1 class="entry-title">
                 <a :href="`/article/${article.id}`" aria-label="查看文章详情">
@@ -24,11 +25,16 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router';
+const router = useRouter()
+const toPage =(path:string):void => {
+    router.push(path)
+}
 const url = ref('https://whiteaserr.top')
 
 defineProps<{
     article: {
-        id: number
+        id: string
         title: string
         date: string
         summary: string
@@ -39,17 +45,17 @@ defineProps<{
 
 <style scoped>
 .post-list {
+    display: flex;
+    flex-direction: column;
+    position: relative;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    /* top: 200px; */
-    /* color: #ffffff; */
-    /* 添加半透明遮罩提升可读性 */
+    padding: 1rem;
+    margin-bottom: 2rem;
+
 }
 .post-list::before {
     content: '';
@@ -64,11 +70,12 @@ defineProps<{
 .entry-header,
 .post-status {
     /* position: relative; */
+    /* font-size: 1rem; */
     z-index: 1;
 }
 .entry-title {
-    /* margin: 0 0 0.5rem; */
-    font-size: 1.3rem;
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
     font-weight: bold;
 }
 .entry-title a {
@@ -78,15 +85,13 @@ defineProps<{
 
 .post-status {
     margin-top: 1rem;
-    font-size: 0.95rem;
-    color: #555;
+    font-size: 0.8rem;
 }
 .post-status a {
-    color: #555;
+    color: #ffffff;
     text-decoration: none;
 }
 .post-status a:hover {
     text-decoration: underline;
 }
-
 </style>

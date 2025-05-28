@@ -56,7 +56,7 @@ import FootBar from '@/components/FootBar.vue'
         radial-gradient(rgba(0, 0, 0, 0) 33%, rgba(0, 0, 0, 0.3) 166%);
 }
 .cover-bg {
-    z-index: -1;
+    /* z-index: -1; */
     /* opacity: 1; */
     position: fixed;
     width: 100%;
