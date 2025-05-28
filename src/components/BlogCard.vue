@@ -6,18 +6,16 @@
             v-else
             :id="id"
             :modelValue="markdown"
-            previewTheme="default"
+            previewTheme="transparent"
             codeTheme="github"
-            class="md-preview"
         />
     </div>
 </template>
 
 <script setup lang="ts">
 import '@/assets/markdown.css'
-import { MdPreview } from 'md-editor-v3'
 import 'md-editor-v3/lib/preview.css'
-
+import { MdPreview } from 'md-editor-v3'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -50,7 +48,6 @@ onMounted(async () => {
 })
 </script>
 
-
 <style scoped>
 .post-container {
     max-width: 900px;
@@ -58,10 +55,5 @@ onMounted(async () => {
     padding: 1rem;
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-:deep(.md-editor-preview-wrapper),
-:deep(.md-editor-preview) {
-    background: transparent !important;
 }
 </style>
