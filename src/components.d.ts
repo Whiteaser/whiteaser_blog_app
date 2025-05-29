@@ -14,9 +14,9 @@ declare module 'vue' {
     ElCol: typeof import('element-plus/es')['ElCol']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElRow: typeof import('element-plus/es')['ElRow']
-    FootBar: typeof import('./components/FootBar.vue')['default']
+    FootBar: typeof import('./views/layout/components/FootBar.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
-    NavBar: typeof import('./components/NavBar.vue')['default']
+    NavBar: typeof import('./views/layout/components/NavBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

@@ -38,8 +38,8 @@
 </template>
 
 <script setup lang="ts">
-import NavBar from '@/components/NavBar.vue'
-import FootBar from '@/components/FootBar.vue'
+import NavBar from '@/views/layout/components/NavBar.vue'
+import FootBar from '@/views/layout/components/FootBar.vue'
 </script>
 
 <style scoped>

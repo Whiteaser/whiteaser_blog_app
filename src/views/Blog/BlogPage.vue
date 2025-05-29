@@ -3,12 +3,12 @@
         <h1>Blogs</h1>
 
         <!-- 分类按钮区域 -->
-        <div class="articles-list">
-            <a href="/articles" class="category-button active">全部</a>
-            <a href="/articles/tech" class="category-button">技术</a>
-            <a href="/articles/game" class="category-button">游戏</a>
-            <a href="/articles/website" class="category-button">站点</a>
-            <a href="/articles/other" class="category-button">杂文</a>
+        <div class="blog-list">
+            <a href="/blog" class="category-button active">全部</a>
+            <a href="/tags/tech" class="category-button">技术</a>
+            <a href="/tags/game" class="category-button">游戏</a>
+            <a href="/tags/website" class="category-button">站点</a>
+            <a href="/tags/other" class="category-button">杂文</a>
         </div>
 
         <!-- 主体文章区域 -->
@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import ArticleItem from '@/components/ArticleItem.vue'
+import ArticleItem from '@/views/Blog/components/BlogItem.vue'
 const articleInfo = ref([
     {
         id: 'TypeScript',
@@ -34,41 +34,41 @@ const articleInfo = ref([
         summary: '测试文本',
         coverImage: '/img/IMG_9744.jpg',
     },
-    // {
-    //     id: 2,
-    //     title: '测试文本',
-    //     date: '2025-01-01T00:00:00Z',
-    //     summary: 'test',
-    //     coverImage: '/img/IMG_8194.jpg',
-    // },
-    // {
-    //     id: 2,
-    //     title: '测试文本',
-    //     date: '2025-01-01T00:00:00Z',
-    //     summary: 'test',
-    //     coverImage: '/img/IMG_8194.jpg',
-    // },
-    // {
-    //     id: 2,
-    //     title: '测试文本',
-    //     date: '2025-01-01T00:00:00Z',
-    //     summary: 'test',
-    //     coverImage: '/img/IMG_8194.jpg',
-    // },
-    // {
-    //     id: 2,
-    //     title: '测试文本',
-    //     date: '2025-01-01T00:00:00Z',
-    //     summary: 'test',
-    //     coverImage: '/img/IMG_8194.jpg',
-    // },
-    // {
-    //     id: 2,
-    //     title: '测试文本',
-    //     date: '2025-01-01T00:00:00Z',
-    //     summary: 'test',
-    //     coverImage: '/img/IMG_8194.jpg',
-    // },
+    {
+        id: 'TypeScript',
+        title: '测试文本',
+        date: '2025-03-29T12:15:02Z',
+        summary: '测试文本',
+        coverImage: '/img/IMG_9744.jpg',
+    },
+    {
+        id: 'TypeScript',
+        title: '测试文本',
+        date: '2025-03-29T12:15:02Z',
+        summary: '测试文本',
+        coverImage: '/img/IMG_9744.jpg',
+    },
+    {
+        id: 'TypeScript',
+        title: '测试文本',
+        date: '2025-03-29T12:15:02Z',
+        summary: '测试文本',
+        coverImage: '/img/IMG_9744.jpg',
+    },
+    {
+        id: 'TypeScript',
+        title: '测试文本',
+        date: '2025-03-29T12:15:02Z',
+        summary: '测试文本',
+        coverImage: '/img/IMG_9744.jpg',
+    },
+    {
+        id: 'TypeScript',
+        title: '测试文本',
+        date: '2025-01-01T00:00:00Z',
+        summary: 'test',
+        coverImage: '/img/IMG_8194.jpg',
+    },
 ])
 </script>
 <style scoped>
@@ -84,7 +84,7 @@ const articleInfo = ref([
     }
 }
 
-.articles-list {
+.blog-list {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
