@@ -1,23 +1,33 @@
 <template>
-    <div id="content" class="main-inner site-content archives">
+    <div class="content">
         <h1>Blogs</h1>
 
-        <!-- 分类按钮区域 -->
+        <!-- 标签按钮栏 -->
         <div class="blog-list">
-            <a href="/blog" class="category-button active">全部</a>
-            <a href="/tags/tech" class="category-button">技术</a>
-            <a href="/tags/game" class="category-button">游戏</a>
-            <a href="/tags/website" class="category-button">站点</a>
-            <a href="/tags/other" class="category-button">杂文</a>
+            <!-- <router-link
+                to="/blogs"
+                class="tag-button"
+                :class="{ active: $route.path === '/blogs' }"
+            >
+                全部
+            </router-link>
+            <router-link
+                v-for="tag in tags"
+                :key="tag.id"
+                :to="`/blogs/tag/${tag.name}`"
+                class="tag-button"
+                :class="{ active: $route.params.slug === tag.name }"
+            >
+                {{ '# ' + tag.nick_name }}
+            </router-link> -->
         </div>
 
-        <!-- 主体文章区域 -->
+        <!-- 文章列表 -->
         <main id="main" role="main" class="site-main">
-            <!-- 文章项 -->
-            <ArticleItem
-                v-for="article in articleInfo"
-                :key="article.id"
-                :article="article"
+            <BlogItem
+                v-for="post in postListInfo"
+                :key="post.id"
+                :post="post"
             />
         </main>
     </div>
@@ -25,62 +35,44 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import ArticleItem from '@/views/Blog/components/BlogItem.vue'
-const articleInfo = ref([
-    {
-        id: 'TypeScript',
-        title: '测试文本',
-        date: '2025-03-29T12:15:02Z',
-        summary: '测试文本',
-        coverImage: '/img/IMG_9744.jpg',
-    },
-    {
-        id: 'TypeScript',
-        title: '测试文本',
-        date: '2025-03-29T12:15:02Z',
-        summary: '测试文本',
-        coverImage: '/img/IMG_9744.jpg',
-    },
-    {
-        id: 'TypeScript',
-        title: '测试文本',
-        date: '2025-03-29T12:15:02Z',
-        summary: '测试文本',
-        coverImage: '/img/IMG_9744.jpg',
-    },
-    {
-        id: 'TypeScript',
-        title: '测试文本',
-        date: '2025-03-29T12:15:02Z',
-        summary: '测试文本',
-        coverImage: '/img/IMG_9744.jpg',
-    },
-    {
-        id: 'TypeScript',
-        title: '测试文本',
-        date: '2025-03-29T12:15:02Z',
-        summary: '测试文本',
-        coverImage: '/img/IMG_9744.jpg',
-    },
-    {
-        id: 'TypeScript',
-        title: '测试文本',
-        date: '2025-01-01T00:00:00Z',
-        summary: 'test',
-        coverImage: '/img/IMG_8194.jpg',
-    },
-])
+import { onMounted } from 'vue'
+import BlogItem from '@/views/Blog/components/BlogItem.vue'
+import { blogGetInfoService } from '@/api/blog'
+import { tagGetInfoService } from '@/api/tag'
+import type { Post, Tag } from '@/types/test'
+// import { useRoute } from 'vue-router'
+// import { watchEffect } from 'vue'
+
+const tags = ref<Tag[]>([])
+
+// const route = useRoute()
+const postListInfo = ref<Post[]>([])
+const getArticleList = async () => {
+    const res = await blogGetInfoService()
+    postListInfo.value = res.data.posts
+}
+const getTagList = async () => {
+    const res = await tagGetInfoService()
+    console.log(res.data);
+    tags.value = res.data
+}
+
+onMounted(() => {
+    getTagList()
+    getArticleList()
+})
 </script>
 <style scoped>
-#content {
+.content {
     width: 80%;
     max-width: 900px;
-    min-width: 200px;
+    min-width: 400px;
     margin: 0 auto;
     padding: 2rem 1rem;
     z-index: 0;
     h1 {
         text-align: center;
+        margin: 20px 0;
     }
 }
 
@@ -91,7 +83,7 @@ const articleInfo = ref([
     margin-bottom: 2rem;
 }
 
-.category-button {
+.tag-button {
     display: inline-block;
     margin-right: 0.7rem;
     padding: 0.5rem 1rem;
@@ -103,12 +95,12 @@ const articleInfo = ref([
     transition: background-color 0.3s;
 }
 
-.category-button:hover {
+.tag-button:hover {
     background-color: #ccc;
 }
 
-.category-button.active {
+.tag-button.active {
     background-color: #333;
-    color: #fff;
+    color: #ff0000;
 }
 </style>

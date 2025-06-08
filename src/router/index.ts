@@ -15,16 +15,23 @@ const routes = [
             {
                 // 首页
                 path: '/home',
-                component: () => import('@/views/layout/components/SignatureBar.vue'),
+                component: () =>
+                    import('@/views/layout/components/SignatureBar.vue'),
             },
             {
-                // 博客列表
-                path: '/blog',
+                // 所有博客列表
+                path: '/blogs',
                 component: () => import('@/views/Blog/BlogPage.vue'),
             },
             {
-                // 博客详情页
-                path: 'blog/:slug',
+                // 标签博客列表
+                path: 'blogs/tag/:slug',
+                name: 'blogsByTag',
+                component: () => import('@/views/Blog/BlogPage.vue'),
+            },
+            {
+                // 博客详情
+                path: 'blogs/detail/:slug',
                 component: () => import('@/views/Blog/components/BlogCard.vue'),
             },
             {

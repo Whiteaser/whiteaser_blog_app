@@ -1,10 +1,12 @@
 import '@/assets/main.css'
+import '@/assets/font.css'
 // import '@/assets/markdown.css'
 import { createApp } from 'vue'
 
 import App from './App.vue'
 import router from './router'
 import pinia from './stores'
+
 
 const app = createApp(App)
 

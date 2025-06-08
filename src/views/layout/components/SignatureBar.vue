@@ -17,6 +17,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    font-family: 'Banquise-Regular', Arial, sans-serif;
     font-size: 48px;
     color: white;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);

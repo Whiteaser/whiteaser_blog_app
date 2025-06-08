@@ -32,7 +32,9 @@
             playsinline
         ></video>
         <NavBar />
+
         <router-view />
+
         <FootBar />
     </div>
 </template>

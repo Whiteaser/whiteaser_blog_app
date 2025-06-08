@@ -3,7 +3,7 @@
         <nav>
             <ul class="nav_bar">
                 <li @click="toPage('/home')">Home</li>
-                <li @click="toPage('/blog')">Blog</li>
+                <li @click="toPage('/blogs')">Blog</li>
                 <li @click="toPage('/tools')">Tools</li>
                 <li @click="toPage('/me')">Me</li>
             </ul>
@@ -28,8 +28,12 @@ header {
     /* pointer-events: none; */
     z-index: 1;
     user-select: none;
+    transform: translate(0, -80%);
+    transition: transform 0.4s ease-in-out;
 }
-
+header:hover {
+    transform: translate(0, 0);
+}
 .nav_bar {
     display: flex;
     justify-content: center;
@@ -41,6 +45,7 @@ header {
     list-style: none;
     margin: 0 20px;
     cursor: pointer;
+    font-family: 'DMSerifText-Regular', Arial, sans-serif;
     font-size: 1.5em;
     color: white;
     transition:
@@ -51,7 +56,7 @@ header {
 }
 
 .nav_bar li:hover {
-    transform: scale(1.33);
+    transform: scale(1.33) ;
     color: red;
 }
 </style>

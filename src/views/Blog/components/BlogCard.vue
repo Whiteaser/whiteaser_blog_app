@@ -4,23 +4,19 @@
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
             voluptatibus eum dolores sed eius? Reiciendis facere omnis eaque
             debitis dolorum ut dolor dolorem hic fugiat illum? Vel consequatur
-            officia officiis.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
-            voluptatibus eum dolores sed eius? Reiciendis facere omnis eaque
-            debitis dolorum ut dolor dolorem hic fugiat illum? Vel consequatur
-            officia officiis.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
-            voluptatibus eum dolores sed eius? Reiciendis facere omnis eaque
-            debitis dolorum ut dolor dolorem hic fugiat illum? Vel consequatur
-            officia officiis.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
-            voluptatibus eum dolores sed eius? Reiciendis facere omnis eaque
-            debitis dolorum ut dolor dolorem hic fugiat illum? Vel consequatur
-            officia officiis.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
-            voluptatibus eum dolores sed eius? Reiciendis facere omnis eaque
-            debitis dolorum ut dolor dolorem hic fugiat illum? Vel consequatur
-            officia officiis.
+            officia officiis. Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Quae voluptatibus eum dolores sed eius? Reiciendis facere
+            omnis eaque debitis dolorum ut dolor dolorem hic fugiat illum? Vel
+            consequatur officia officiis. Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Quae voluptatibus eum dolores sed eius? Reiciendis
+            facere omnis eaque debitis dolorum ut dolor dolorem hic fugiat
+            illum? Vel consequatur officia officiis. Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Quae voluptatibus eum dolores sed
+            eius? Reiciendis facere omnis eaque debitis dolorum ut dolor dolorem
+            hic fugiat illum? Vel consequatur officia officiis. Lorem ipsum
+            dolor sit amet consectetur adipisicing elit. Quae voluptatibus eum
+            dolores sed eius? Reiciendis facere omnis eaque debitis dolorum ut
+            dolor dolorem hic fugiat illum? Vel consequatur officia officiis.
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
             voluptatibus eum dolores sed eius? Reiciendis facere omnis eaque
             debitis dolorum ut dolor dolorem hic fugiat illum? Vel consequatur
@@ -29,7 +25,7 @@
         <div v-else-if="error">{{ error }}</div>
         <MdPreview
             v-else
-            :id="id"
+            id="preview-only"
             :modelValue="markdown"
             previewTheme="transparent"
             codeTheme="github"
@@ -43,8 +39,8 @@ import 'md-editor-v3/lib/preview.css'
 import { MdPreview } from 'md-editor-v3'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { blogGetDetailService } from '@/api/blog'
 
-const id = 'preview-only'
 const route = useRoute()
 const slug = route.params.slug as string
 
@@ -54,12 +50,10 @@ const error = ref('')
 
 onMounted(async () => {
     try {
-        const res = await fetch(`/posts/${slug}.md`)
-        if (!res.ok) {
-            throw new Error(`文件不存在: /posts/${slug}.md`)
-        }
-        markdown.value = await res.text()
-    } catch (err: unknown) {
+        const res = await blogGetDetailService(slug)
+        console.log(res.data);
+        markdown.value = await res.data.content
+    } catch (err) {
         console.error('加载失败:', err)
         if (err && typeof err === 'object' && 'message' in err) {
             error.value =

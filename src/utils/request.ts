@@ -1,9 +1,13 @@
 import axios from 'axios'
 
-// const baseURL = 'http://'
+const baseURL = 'http://localhost:3000'
 
-const instance = axios.create({})
+const instance = axios.create({
+    baseURL,
+    timeout: 100000,
+})
 
+// TODO 1. 设置请求头
 instance.interceptors.request.use(
     (config) => {
         return config
@@ -24,3 +28,5 @@ instance.interceptors.response.use(
 )
 
 export default instance
+
+export { baseURL }
