@@ -1,9 +1,7 @@
 <template>
     <!-- 文章项 -->
     <article
-        class="post-list"
-        itemscope
-        :itemtype="baseURL"
+        class="post-item"
         :style="{ backgroundImage: `url(${post.cover_url})` }"
         @click="toPage(`blogs/detail/${post.id}`)"
     >
@@ -13,27 +11,31 @@
             </h1>
         </header>
 
-        <section class="post-status">
-            {{ post.summary }}
+        <section class="post-brief">
+            <p>
+                {{ post.summary }}
+            </p>
         </section>
     </article>
 </template>
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { baseURL } from '@/utils/request';
-import type { Post } from '@/types/test'
+import type { Post } from '@/types/type'
 defineProps<{
     post: Post
 }>()
 const router = useRouter()
 const toPage = (path: string): void => {
+  router.replace({ path: '/' }) // 先跳转到首页或其他空路由
+  setTimeout(() => {
     router.push(path)
+  }, 0)
 }
 </script>
 
 <style scoped>
-.post-list {
+.post-item {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -42,11 +44,13 @@ const toPage = (path: string): void => {
     background-repeat: no-repeat;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    padding: 1rem;
-    margin-bottom: 2rem;
+    padding: 16px;
+    margin-bottom: 16px;
     color: azure;
+    transition: ease 0.4s;
 }
-.post-list::before {
+
+.post-item::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -56,20 +60,28 @@ const toPage = (path: string): void => {
     border-radius: 10px;
     z-index: 0;
 }
+
+.post-item:hover{
+  transform: scale(1.02);
+}
+
 .header,
-.post-status {
-    /* position: relative; */
-    /* font-size: 1rem; */
+.post-brief {
     z-index: 1;
 }
+
 .title {
-    margin: 0 0 0.5rem;
-    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    font-size: 20px;
     font-weight: bold;
 }
 
-.post-status {
-    margin-top: 1rem;
-    font-size: 0.8rem;
+.post-brief {
+    letter-spacing: 1px;
+    text-indent: 38px;
+    margin:0 18px;
+    line-height: 25px;
+    font-size: 16px;
 }
 </style>

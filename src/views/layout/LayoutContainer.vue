@@ -72,4 +72,18 @@ import FootBar from '@/views/layout/components/FootBar.vue'
     display: flex;
     flex-direction: column;
 }
+
+.rounded {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+
+.pointed {
+    width: 7px;
+    height: 7px;
+    background-color: white;
+    border-radius: 50%;
+}
 </style>

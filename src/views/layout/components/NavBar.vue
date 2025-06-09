@@ -22,12 +22,11 @@ const toPage = (path: string): void => {
 </script>
 <style scoped>
 header {
+    user-select: none;
     position: fixed;
     top: 0;
     width: 100%;
-    /* pointer-events: none; */
     z-index: 1;
-    user-select: none;
     transform: translate(0, -80%);
     transition: transform 0.4s ease-in-out;
 }
@@ -44,7 +43,7 @@ header:hover {
     /* width: 2em; */
     list-style: none;
     margin: 0 20px;
-    cursor: pointer;
+    /* cursor: pointer; */
     font-family: 'DMSerifText-Regular', Arial, sans-serif;
     font-size: 1.5em;
     color: white;
@@ -56,7 +55,7 @@ header:hover {
 }
 
 .nav_bar li:hover {
-    transform: scale(1.33) ;
+    transform: scale(1.33);
     color: red;
 }
 </style>

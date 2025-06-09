@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-
+import type { Post,Tag } from '@/types/type'
 export const useBlogStore = defineStore(
     'whiteaser_blog',
     () => {
@@ -8,8 +8,10 @@ export const useBlogStore = defineStore(
         const setToken = (newToken: string): void => {
             token.value = newToken
         }
-        const test = ref('Hello, this is a test message from the blog store!')
-        return { token, test, setToken }
+        const postListInfo = ref<Post[]>([])
+        const tagListInfo = ref<Tag[]>([])
+
+        return { token, setToken, postListInfo, tagListInfo }
     },
     {
         persist: true,

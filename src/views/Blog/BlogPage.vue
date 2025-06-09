@@ -1,31 +1,31 @@
 <template>
     <div class="content">
-        <h1>Blogs</h1>
+        <h1>White Blogs</h1>
 
         <!-- 标签按钮栏 -->
         <div class="blog-list">
-            <!-- <router-link
+            <router-link
                 to="/blogs"
+                @click="getPostsList()"
                 class="tag-button"
                 :class="{ active: $route.path === '/blogs' }"
+                >全部</router-link
             >
-                全部
-            </router-link>
             <router-link
-                v-for="tag in tags"
+                v-for="tag in blogStore.tagListInfo"
                 :key="tag.id"
-                :to="`/blogs/tag/${tag.name}`"
+                :to="`/blogs/tag/${tag.NAME}`"
+                @click="getPostsByTag(tag.id)"
                 class="tag-button"
-                :class="{ active: $route.params.slug === tag.name }"
+                :class="{ active: $route.params.slug === tag.NAME }"
+                >{{ tag.NAME }}</router-link
             >
-                {{ '# ' + tag.nick_name }}
-            </router-link> -->
         </div>
 
         <!-- 文章列表 -->
         <main id="main" role="main" class="site-main">
             <BlogItem
-                v-for="post in postListInfo"
+                v-for="post in blogStore.postListInfo"
                 :key="post.id"
                 :post="post"
             />
@@ -34,45 +34,49 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { onMounted } from 'vue'
 import BlogItem from '@/views/Blog/components/BlogItem.vue'
+import { onMounted } from 'vue'
+import { useBlogStore } from '@/stores/index'
 import { blogGetInfoService } from '@/api/blog'
-import { tagGetInfoService } from '@/api/tag'
-import type { Post, Tag } from '@/types/test'
-// import { useRoute } from 'vue-router'
-// import { watchEffect } from 'vue'
+import { tagGetInfoService, tagGetPostsByTagService } from '@/api/tag'
 
-const tags = ref<Tag[]>([])
+const blogStore = useBlogStore()
 
-// const route = useRoute()
-const postListInfo = ref<Post[]>([])
-const getArticleList = async () => {
+const getPostsList = async () => {
     const res = await blogGetInfoService()
-    postListInfo.value = res.data.posts
+    blogStore.postListInfo = res.data.posts
 }
 const getTagList = async () => {
     const res = await tagGetInfoService()
-    console.log(res.data);
-    tags.value = res.data
+    blogStore.tagListInfo = res.data
+}
+
+const getPostsByTag = async (id: number) => {
+    const res = await tagGetPostsByTagService(id)
+    console.log(res.data)
+    blogStore.postListInfo = res.data.posts
 }
 
 onMounted(() => {
     getTagList()
-    getArticleList()
+    getPostsList()
 })
 </script>
 <style scoped>
 .content {
+    font-family: 'NotoSerifSC-VariableFont_wght';
+    user-select: none;
     width: 80%;
     max-width: 900px;
     min-width: 400px;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 32px 16px;
     z-index: 0;
     h1 {
+      font-size: 40px;
+        margin: 50px 0;
         text-align: center;
-        margin: 20px 0;
+        color: white;
     }
 }
 
@@ -80,27 +84,34 @@ onMounted(() => {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 2rem;
+    margin-bottom: 16px;
 }
 
 .tag-button {
-    display: inline-block;
-    margin-right: 0.7rem;
-    padding: 0.5rem 1rem;
-    background-color: #eaeaea;
-    color: #333;
-    border-radius: 5px;
+    margin-right: 10px;
+    padding: 5px 14px;
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: rgba(89, 89, 89, 0.3);
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    border: 0.888889px solid rgba(255, 255, 255, 0.18);
+    box-shadow: rgba(14, 14, 14, 0.19) 0px 6px 15px 0px;
+    -webkit-box-shadow: rgba(14, 14, 14, 0.19) 0px 6px 15px 0px;
+    border-radius: 12px;
+    color: rgb(255, 255, 255);
     transition: background-color 0.3s;
 }
 
 .tag-button:hover {
-    background-color: #ccc;
+    background-color: rgba(89, 89, 89, 0.6);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
 }
 
 .tag-button.active {
-    background-color: #333;
-    color: #ff0000;
+    font-weight: 800;
+    background-color: #ff0000;
 }
 </style>

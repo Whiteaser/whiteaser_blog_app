@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import '@/assets/markdown.css'
+import '@/assets/css/markdown.css'
 import 'md-editor-v3/lib/preview.css'
 import { MdPreview } from 'md-editor-v3'
 import { onMounted, ref } from 'vue'
