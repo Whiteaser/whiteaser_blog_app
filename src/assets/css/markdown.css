@@ -1,6 +1,6 @@
 .md-editor-preview {
   --md-theme-code-block-bg-color: rgba(0, 0, 0, 0.536) !important;
-  --md-theme-link-color: #172537 !important;
+  --md-theme-link-color: #344d9e !important;
   --md-theme-link-hover-color: #d24017 !important;
   --md-theme-code-inline-color: #ea4c89 !important;
   --md-theme-code-inline-bg-color: rgba(59, 170, 250, 0.1) !important;
@@ -15,8 +15,8 @@
 }
 
 .md-editor-preview hr {
-    height: 10px !important;
-    margin: 10px 0 !important;
-    border: none !important;
-    border-top: 1px solid var(--md-theme-border-color) !important;
+  height: 10px !important;
+  margin: 10px 0 !important;
+  border: none !important;
+  border-top: 1px solid var(--md-theme-border-color) !important;
 }

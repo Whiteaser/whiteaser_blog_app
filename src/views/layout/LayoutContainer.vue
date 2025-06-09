@@ -49,8 +49,8 @@ import FootBar from '@/views/layout/components/FootBar.vue'
     z-index: 0;
     position: fixed;
     pointer-events: none;
-    /* left: 0;
-    top: 0; */
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
     background-image:
@@ -58,14 +58,13 @@ import FootBar from '@/views/layout/components/FootBar.vue'
         radial-gradient(rgba(0, 0, 0, 0) 33%, rgba(0, 0, 0, 0.3) 166%);
 }
 .cover-bg {
-    /* z-index: -1; */
-    /* opacity: 1; */
+    z-index: -1;
+    opacity: 1;
     position: fixed;
     width: 100%;
     height: 100%;
     -o-object-fit: cover;
     object-fit: cover;
-    /* animation: main 1s ease forwards; */
 }
 .layout {
     min-height: 100vh;

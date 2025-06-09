@@ -73,7 +73,9 @@ onMounted(() => {
     padding: 32px 16px;
     z-index: 0;
     h1 {
-      font-size: 40px;
+        font-family: 'ZCOOLXiaoWei-Regular';
+        font-size: 40px;
+        font-weight: normal;
         margin: 50px 0;
         text-align: center;
         color: white;
