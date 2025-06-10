@@ -2,9 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
     {
-        // 登录页
-        path: '/login',
-        component: () => import('@/views/login/LoginPage.vue'),
+        // 个人管理页
+        path: '/user',
+        component: () => import('@/views/user/UserPage.vue'),
     },
     {
         // 进入首界面
@@ -19,20 +19,25 @@ const routes = [
                     import('@/views/layout/components/SignatureBar.vue'),
             },
             {
+                // 登录
+                path: '/login',
+                component: () => import('@/views/login/LoginPage.vue'),
+            },
+            {
                 // 所有博客列表
                 path: '/blogs',
-                component: () => import('@/views/Blog/BlogPage.vue'),
+                component: () => import('@/views/blog/BlogPage.vue'),
             },
             {
                 // 标签博客列表
                 path: 'blogs/tag/:slug',
                 name: 'blogsByTag',
-                component: () => import('@/views/Blog/BlogPage.vue'),
+                component: () => import('@/views/blog/BlogPage.vue'),
             },
             {
                 // 博客详情
                 path: 'blogs/detail/:slug',
-                component: () => import('@/views/Blog/components/BlogCard.vue'),
+                component: () => import('@/views/blog/components/BlogCard.vue'),
             },
             {
                 // 工具

@@ -9,8 +9,9 @@
                 @click="getPostsList()"
                 class="tag-button"
                 :class="{ active: $route.path === '/blogs' }"
-                >全部</router-link
-            >
+                >
+                全部
+            </router-link>
             <router-link
                 v-for="tag in blogStore.tagListInfo"
                 :key="tag.id"
@@ -18,8 +19,9 @@
                 @click="getPostsByTag(tag.id)"
                 class="tag-button"
                 :class="{ active: $route.params.slug === tag.NAME }"
-                >{{ tag.NAME }}</router-link
             >
+                {{ tag.NAME }}
+            </router-link>
         </div>
 
         <!-- 文章列表 -->

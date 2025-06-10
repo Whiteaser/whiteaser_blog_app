@@ -1,7 +1,8 @@
 export interface User {
-    username: string
+    username?: string
     email: string
     password: string
+    repassword?: string
 }
 
 export interface Tag {

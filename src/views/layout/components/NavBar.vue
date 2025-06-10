@@ -1,5 +1,6 @@
 <template>
-    <header :class="{ visible: true }">
+    <header>
+        <div class="nav_before"></div>
         <nav>
             <ul class="nav_bar">
                 <li @click="toPage('/home')">Home</li>
@@ -8,13 +9,27 @@
                 <li @click="toPage('/me')">Me</li>
             </ul>
         </nav>
+        <div class="nav_after">
+            <el-icon
+                :class="{ 'is-loading': isHover }"
+                @mouseenter="isHover = true"
+                @mouseleave="isHover = false"
+                :size="20"
+                color="white"
+                @click="toPage('/login')"
+            >
+                <Setting />
+            </el-icon>
+        </div>
     </header>
-    <footer></footer>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { Setting } from '@element-plus/icons-vue'
 
+const isHover = ref(false)
 const router = useRouter()
 const toPage = (path: string): void => {
     router.push(path)
@@ -23,29 +38,32 @@ const toPage = (path: string): void => {
 <style scoped>
 header {
     user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: fixed;
-    top: 0;
+    top: -50px;
     width: 100%;
+    height: 60px;
     z-index: 1;
-    transform: translate(0, -80%);
-    transition: transform 0.4s ease-in-out;
+    opacity: 0;
+    transition: all 0.5s ease;
 }
 header:hover {
-    transform: translate(0, 0);
+    top: 0;
+    opacity: 1;
 }
 .nav_bar {
     display: flex;
     justify-content: center;
-    padding: 15px 0;
+    padding: 20px 0;
 }
 
 .nav_bar li {
-    /* width: 2em; */
-    list-style: none;
-    margin: 0 20px;
-    /* cursor: pointer; */
     font-family: 'DMSerifText-Regular', Arial, sans-serif;
     font-size: 1.5em;
+    list-style: none;
+    margin: 0 20px;
     color: white;
     transition:
         transform 0.4s ease-in-out,
@@ -57,5 +75,10 @@ header:hover {
 .nav_bar li:hover {
     transform: scale(1.33);
     color: red;
+}
+
+.nav_after {
+    position: absolute;
+    right: 16px;
 }
 </style>

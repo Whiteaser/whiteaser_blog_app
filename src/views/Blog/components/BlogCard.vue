@@ -63,7 +63,7 @@ header {
     flex-direction: column;
     h1 {
         font-family: 'ZCOOLXiaoWei-Regular';
-        font-size: 41.9556px;
+        font-size: 42px;
         margin-top: 7rem;
         color: white;
     }
@@ -74,6 +74,7 @@ header {
         padding: 18px 0 0;
     }
 }
+
 .post-cotent {
     max-width: 1100px;
     padding: 1.5rem 2rem;
