@@ -33,7 +33,7 @@
                         placeholder="请输入再次密码"
                     ></el-input>
                 </el-form-item>
-                <el-form-item>
+                <el-form-item class="form_bottom">
                     <el-button @click="login">登录</el-button>
                 </el-form-item>
             </el-form>
@@ -104,7 +104,7 @@ const login = async () => {
     if (!ruleFormRef.value) return
     await ruleFormRef.value.validate()
     const res = await userLoginService(userForm.value)
-    console.log(res.data);
+    console.log(res.data)
     blogStore.setToken(res.data.token)
     isLogin.value = true
     ElMessage.success('登录成功')
@@ -129,6 +129,16 @@ watch(isLogin, () => {
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+.login-card {
+    background: transparent;
+    backdrop-filter: blur(15px);
+    min-width: 400px;
+    padding: 20px 0px;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px #00000050;
+    border: 1px solid #96969650;
+    color: white !important;
     .login-form {
         display: flex;
         flex-direction: column;
@@ -136,14 +146,24 @@ watch(isLogin, () => {
         justify-content: center;
     }
 }
-.login-card {
-    background: transparent;
-    backdrop-filter: blur(15px);
-    width: 400px;
-    padding: 20px;
-    border-radius: 30px;
-    box-shadow: 0 5px 15px #00000050;
-    border: 1px solid #96969650;
-    color: white !important;
+.form_bottom {
+    position: relative;
+    top: 20px;
+}
+:deep(.el-input__wrapper) {
+    background-color: transparent;
+    --el-button-border-color: white;
+}
+:deep(.el-input__inner) {
+    color: #d8e1f3;
+}
+:deep(.el-button) {
+    background-color: transparent;
+    --el-button-text-color: #c4cddf;
+    --el-button-hover-text-color: #dde4f3;
+    border-color: #ffffff63;
+}
+:deep(.el-form-item__label) {
+    color: #abcfd9;
 }
 </style>

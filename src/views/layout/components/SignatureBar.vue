@@ -1,6 +1,6 @@
 <template>
     <div class="home-content">
-        <h1 class="signature">. Whiteaser .</h1>
+        <h1 class="signature">Whiteaser</h1>
     </div>
 </template>
 
@@ -22,5 +22,16 @@
   font-size: 48px;
   color: white;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.signature::before{
+  content: "<";
+  font-size: 60px;
+  margin-right: 20px;
+}
+.signature::after{
+  content: ">";
+  font-size: 60px;
+  margin-left: 20px;
 }
 </style>

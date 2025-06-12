@@ -95,7 +95,7 @@ const toPage = (path: string): void => {
 }
 
 /* 遮罩阴影 */
-.blur-mask::after {
+/* .blur-mask::after {
     content: '';
     position: absolute;
     height: 100%;
@@ -103,7 +103,7 @@ const toPage = (path: string): void => {
     background-image:
         radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.5) 100%),
         radial-gradient(rgba(0, 0, 0, 0) 33%, rgba(0, 0, 0, 0.3) 166%);
-}
+} */
 
 .post-item:hover {
     transform: scale(1.02);
