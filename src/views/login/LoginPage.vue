@@ -1,6 +1,7 @@
 <template>
     <div class="login-container">
         <el-card class="login-card" shadow="hover">
+            <h1 class="title"><span>控</span><span>制</span><span>台</span></h1>
             <el-form
                 :model="userForm"
                 :rules="rules"
@@ -134,21 +135,35 @@ watch(isLogin, () => {
     background: transparent;
     backdrop-filter: blur(15px);
     min-width: 400px;
-    padding: 20px 0px;
+    padding: 20px 0px 0px 0px;
     border-radius: 30px;
     box-shadow: 0 5px 15px #00000050;
     border: 1px solid #96969650;
     color: white !important;
-    .login-form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    text-align: center;
+    h1 {
+        font-family: 'ZCOOLXiaoWei-Regular';
+        font-size: 40px;
+        margin-bottom: 20px;
+    }
+    .title span {
+        letter-spacing: 10px;
+    }
+    .title span:last-child {
+        letter-spacing: 0;
     }
 }
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .form_bottom {
     position: relative;
-    top: 20px;
+    top: 10px;
 }
 :deep(.el-input__wrapper) {
     background-color: transparent;
