@@ -27,5 +27,6 @@ export default defineConfig({
     optimizeDeps: {
         exclude: [],
     },
-    envPrefix: 'ENV_',
+    // 修改环境变量前缀
+    // envPrefix: 'ENV_',
 })

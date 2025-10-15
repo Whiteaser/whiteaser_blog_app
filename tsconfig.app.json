@@ -16,6 +16,6 @@
         "skipLibCheck": true, // 跳过库文件的类型检查，提升编译性能
         // "allowJs": true, // 如果你有 JS 文件，可以允许它们一起编译
         // "useDefineForClassFields": true // 对于类字段的定义使用现代标准
-        "types": ["element-plus/global"]
+        "types": ["element-plus/global","vite/client"]
     }
 }
